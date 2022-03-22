@@ -23,13 +23,14 @@ window.OverlordMaps = {
 		lowerSrc: "../assets/images/maps/underground.PNG",
 		upperSrc: "../assets/images/maps/underground.PNG",
 		gameObjects: {
-			player: new GameObject({
-				x: 2,
-				y: 2,
+			player: new Person({
+				x: utils.withGrid(2),
+				y: utils.withGrid(2),
+				isPlayerControlled: true,
 			}),
-			npc: new GameObject({
-				x: 3,
-				y: 3,
+			npc: new Person({
+				x: utils.withGrid(3),
+				y: utils.withGrid(3),
 				src: "../assets/images/characters/professor.png",
 			}),
 		},
