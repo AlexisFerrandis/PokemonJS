@@ -7,6 +7,17 @@ class Sprite {
 			this.isLoaded = true;
 		};
 
+		// shadow
+		this.shadow = new Image();
+		this.useShadow = true;
+
+		if (this.useShadow) {
+			this.shadow.src = "../assets/images/characters/shadow.png";
+		}
+		this.shadow.onload = () => {
+			this.isShadowLoaded = true;
+		};
+
 		// configure animation and initial state
 		this.animation = config.animation || {
 			idleDown: [[0, 0]],
@@ -22,6 +33,8 @@ class Sprite {
 		const x = this.gameObject.x * 16;
 		const y = this.gameObject.y * 16;
 
-		this.isLoaded && ctx.drawImage(this.image, 0, 0, 32, 32, x, y, 32, 32);
+		this.isShadowLoaded && ctx.drawImage(this.shadow, x + 2, y + 18, 12, 6);
+
+		this.isLoaded && ctx.drawImage(this.image, 0, 0, 32, 48, x, y, 16, 24);
 	}
 }
