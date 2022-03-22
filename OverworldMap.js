@@ -9,19 +9,19 @@ class OverworldMap {
 		this.upperImage.src = config.upperSrc;
 	}
 
-	drawLowerImage(ctx) {
-		ctx.drawImage(this.lowerImage, 0, 0);
+	drawLowerImage(ctx, cameraPerson) {
+		ctx.drawImage(this.lowerImage, utils.withGrid(10.5) - cameraPerson.x, utils.withGrid(6) - cameraPerson.y, this.upperImage.width / 2, this.upperImage.height / 2);
 	}
 
-	drawUpperImage(ctx) {
-		ctx.drawImage(this.upperImage, 0, 0);
+	drawUpperImage(ctx, cameraPerson) {
+		ctx.drawImage(this.upperImage, utils.withGrid(10.5) - cameraPerson.x, utils.withGrid(6) - cameraPerson.y, this.upperImage.width / 2, this.upperImage.height / 2);
 	}
 }
 
 window.OverlordMaps = {
 	DemoRoom: {
-		lowerSrc: "../assets/images/maps/underground.PNG",
-		upperSrc: "../assets/images/maps/underground.PNG",
+		lowerSrc: "../assets/images/maps/map.PNG",
+		upperSrc: "../assets/images/maps/map.PNG",
 		gameObjects: {
 			player: new Person({
 				x: utils.withGrid(2),
@@ -36,8 +36,8 @@ window.OverlordMaps = {
 		},
 	},
 	House: {
-		lowerSrc: "./images/maps/underground.PNG",
-		upperSrc: "./images/maps/underground.PNG",
+		lowerSrc: "./images/maps/map.PNG",
+		upperSrc: "./images/maps/map.PNG",
 		gameObjects: {
 			player: new GameObject({
 				x: 2,
