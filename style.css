@@ -25,9 +25,14 @@ canvas {
 	height: 198px;
 	border: 1px solid white;
 }
-#gameContainer {
+.game-container {
 	position: relative;
 	width: 352px;
 	height: 198px;
 	margin: 0 auto;
+	transform: scale(2) translateY(50%);
+}
+
+.game-container canvas {
+	image-rendering: pixelated;
 }

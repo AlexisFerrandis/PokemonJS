@@ -1,0 +1,27 @@
+class Sprite {
+	constructor(config) {
+		// set up image
+		this.image = new Image();
+		this.image.src = config.src;
+		this.image.onload = () => {
+			this.isLoaded = true;
+		};
+
+		// configure animation and initial state
+		this.animation = config.animation || {
+			idleDown: [[0, 0]],
+		};
+		this.currentAnimation = config.currentAnimation || "idleDown";
+		this.currentAnimationFrame = 0;
+
+		// reference the game object
+		this.gameObject = config.gameObject;
+	}
+
+	draw(ctx) {
+		const x = this.gameObject.x * 16;
+		const y = this.gameObject.y * 16;
+
+		this.isLoaded && ctx.drawImage(this.image, 0, 0, 32, 32, x, y, 32, 32);
+	}
+}
