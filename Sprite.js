@@ -88,13 +88,14 @@ class Sprite {
 	}
 
 	draw(ctx, cameraPerson) {
-		const x = this.gameObject.x - 2 + utils.withGrid(10.5) - cameraPerson.x;
-		const y = this.gameObject.y - 2 + utils.withGrid(6) - cameraPerson.y;
+		const x = this.gameObject.x - 2 + utils.withGrid(10.5) - cameraPerson.x + 2;
+		const y = this.gameObject.y - 2 + utils.withGrid(6) - cameraPerson.y - 8;
 
 		this.isShadowLoaded && ctx.drawImage(this.shadow, x + 2, y + 18, 12, 6);
 
 		const [frameX, frameY] = this.frame;
 
+		// (img, cutX, cutY, cutWidth, cutHeight, placeX, placeY, placedWidth, placedHeight)
 		this.isLoaded && ctx.drawImage(this.image, frameX * 32, frameY * 32, 32, 48, x, y, 16, 24);
 		this.updateAnimationProgress();
 	}

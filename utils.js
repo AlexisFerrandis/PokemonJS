@@ -20,4 +20,20 @@ const utils = {
 		}
 		return { x, y };
 	},
+	loadWall(mapCollision) {
+		const boundaries = [];
+		for (let i = 0; i < mapCollision.length; i += 100) {
+			const mapCollisionArray = [];
+			mapCollisionArray.push(mapCollision.slice(i, 100 + i));
+
+			let k = (i / 100) * 16;
+			mapCollisionArray.forEach((row, i) => {
+				row.forEach((symbol, j) => {
+					if (symbol === 916) boundaries.push([`${(x = j * 16)},${(y = k)}`, true]);
+				});
+			});
+		}
+		const boundariesObj = Object.fromEntries(boundaries);
+		return boundariesObj;
+	},
 };

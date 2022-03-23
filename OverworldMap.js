@@ -11,11 +11,12 @@ class OverworldMap {
 	}
 
 	drawLowerImage(ctx, cameraPerson) {
-		ctx.drawImage(this.lowerImage, utils.withGrid(10.5) - cameraPerson.x, utils.withGrid(6) - cameraPerson.y, this.upperImage.width / 2, this.upperImage.height / 2);
+		let ratio = 3.12; // perhaps to reconfigure
+		ctx.drawImage(this.lowerImage, utils.withGrid(10.5) - cameraPerson.x, utils.withGrid(6) - cameraPerson.y, this.upperImage.width * ratio, this.upperImage.height * ratio);
 	}
 
 	drawUpperImage(ctx, cameraPerson) {
-		ctx.drawImage(this.upperImage, utils.withGrid(10.5) - cameraPerson.x, utils.withGrid(6) - cameraPerson.y, this.upperImage.width / 2, this.upperImage.height / 2);
+		ctx.drawImage(this.upperImage, utils.withGrid(10.5) - cameraPerson.x, utils.withGrid(6) - cameraPerson.y, this.upperImage.width * ratio, this.upperImage.height * ratio);
 	}
 
 	isSpaceTaken(currentX, currentY, direction) {
@@ -47,7 +48,7 @@ class OverworldMap {
 window.OverlordMaps = {
 	DemoRoom: {
 		lowerSrc: "../assets/images/maps/map.PNG",
-		upperSrc: "../assets/images/maps/map.PNG",
+		upperSrc: "../assets/images/maps/mapForeground.PNG",
 		gameObjects: {
 			player: new Person({
 				x: utils.withGrid(2),
@@ -60,13 +61,7 @@ window.OverlordMaps = {
 				src: "../assets/images/characters/professor.png",
 			}),
 		},
-		walls: {
-			// "16:16": true,
-			[utils.asGridCoords(7, 6)]: true,
-			[utils.asGridCoords(8, 6)]: true,
-			[utils.asGridCoords(7, 7)]: true,
-			[utils.asGridCoords(8, 7)]: true,
-		},
+		walls: utils.loadWall(collisions),
 	},
 	// House: {
 	// 	lowerSrc: "./images/maps/map.PNG",
