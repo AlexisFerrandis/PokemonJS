@@ -8,6 +8,8 @@ class OverworldMap {
 
 		this.upperImage = new Image();
 		this.upperImage.src = config.upperSrc;
+
+		this.isCutscenePlaying = false;
 	}
 
 	drawLowerImage(ctx, cameraPerson) {
@@ -25,11 +27,27 @@ class OverworldMap {
 	}
 
 	mountObjects() {
-		Object.values(this.gameObjects).forEach((o) => {
+		Object.keys(this.gameObjects).forEach((key) => {
 			// TODO determine if object need mount
-
-			o.mount(this);
+			let object = this.gameObjects[key];
+			object.id = key;
+			object.mount(this);
 		});
+	}
+
+	async startCutscene(events) {
+		this.isCutscenePlaying = true;
+		console.log(events);
+
+		for (let i = 0; i < events.length; i++) {
+			const eventHandler = new OverworldEvent({
+				event: events[i],
+				map: this,
+			});
+			await eventHandler.init();
+		}
+
+		this.isCutscenePlaying = false;
 	}
 
 	addWall(x, y) {
@@ -51,14 +69,64 @@ window.OverlordMaps = {
 		upperSrc: "../assets/images/maps/mapForeground.PNG",
 		gameObjects: {
 			player: new Person({
-				x: utils.withGrid(2),
-				y: utils.withGrid(2),
+				x: utils.withGrid(4),
+				y: utils.withGrid(4),
 				isPlayerControlled: true,
 			}),
-			npc: new Person({
+			professor: new Person({
 				x: utils.withGrid(3),
 				y: utils.withGrid(3),
 				src: "../assets/images/characters/professor.png",
+				behaviorLoop: [
+					{
+						type: "walk",
+						direction: "left",
+					},
+					{
+						type: "stand",
+						direction: "up",
+						time: 800,
+					},
+					{
+						type: "walk",
+						direction: "up",
+					},
+					{
+						type: "walk",
+						direction: "right",
+					},
+					{
+						type: "walk",
+						direction: "down",
+					},
+				],
+			}),
+			npcA: new Person({
+				x: utils.withGrid(5),
+				y: utils.withGrid(1),
+				src: "../assets/images/characters/npc_1.png",
+				behaviorLoop: [
+					{
+						type: "stand",
+						direction: "left",
+						time: 800,
+					},
+					{
+						type: "stand",
+						direction: "up",
+						time: 800,
+					},
+					{
+						type: "stand",
+						direction: "right",
+						time: 800,
+					},
+					{
+						type: "stand",
+						direction: "up",
+						time: 200,
+					},
+				],
 			}),
 		},
 		walls: utils.loadWall(collisions),

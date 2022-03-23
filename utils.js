@@ -36,4 +36,10 @@ const utils = {
 		const boundariesObj = Object.fromEntries(boundaries);
 		return boundariesObj;
 	},
+	emitEvent(name, detail) {
+		const event = new CustomEvent(name, {
+			detail,
+		});
+		document.dispatchEvent(event);
+	},
 };
