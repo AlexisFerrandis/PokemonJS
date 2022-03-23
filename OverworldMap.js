@@ -1,6 +1,8 @@
 class OverworldMap {
 	constructor(config) {
+		this.overworld = null;
 		this.gameObjects = config.gameObjects;
+		this.cutsceneSpaces = config.cutsceneSpaces || {};
 		this.walls = config.walls || {};
 
 		this.lowerImage = new Image();
@@ -37,7 +39,6 @@ class OverworldMap {
 
 	async startCutscene(events) {
 		this.isCutscenePlaying = true;
-		console.log(events);
 
 		for (let i = 0; i < events.length; i++) {
 			const eventHandler = new OverworldEvent({
@@ -48,6 +49,28 @@ class OverworldMap {
 		}
 
 		this.isCutscenePlaying = false;
+
+		// reset npc behavior
+		Object.values(this.gameObjects).forEach((object) => object.doBehaviorEvent(this));
+	}
+
+	checkForActionCutscene() {
+		const player = this.gameObjects["player"];
+		const nextCoords = utils.nextPosition(player.x, player.y, player.direction);
+		const match = Object.values(this.gameObjects).find((object) => {
+			return `${object.x}, ${object.y}` === `${nextCoords.x}, ${nextCoords.y}`;
+		});
+		if (!this.isCutscenePlaying && match && match.talking.length) {
+			this.startCutscene(match.talking[0].events);
+		}
+	}
+
+	checkForFootStepCutscene() {
+		const player = this.gameObjects["player"];
+		const match = this.cutsceneSpaces[`${player.x},${player.y}`];
+		if (!this.isCutscenePlaying && match) {
+			this.startCutscene(match[0].events);
+		}
 	}
 
 	addWall(x, y) {
@@ -63,7 +86,7 @@ class OverworldMap {
 	}
 }
 
-window.OverlordMaps = {
+window.OverworldMaps = {
 	DemoRoom: {
 		lowerSrc: "../assets/images/maps/map.PNG",
 		upperSrc: "../assets/images/maps/mapForeground.PNG",
@@ -127,23 +150,87 @@ window.OverlordMaps = {
 						time: 200,
 					},
 				],
+				talking: [
+					{
+						events: [
+							{
+								type: "textMessage",
+								text: "Hello u...",
+								facePlayer: "npcA",
+							},
+							{
+								type: "textMessage",
+								text: "U'r the chosen one",
+							},
+							{
+								who: "player",
+								type: "walk",
+								direction: "left",
+							},
+						],
+					},
+				],
 			}),
 		},
 		walls: utils.loadWall(collisions),
+		cutsceneSpaces: {
+			[utils.asGridCoords(5, 5)]: [
+				{
+					events: [
+						{
+							who: "npcA",
+							type: "walk",
+							direction: "down",
+						},
+						{
+							who: "npcA",
+							type: "stand",
+							direction: "down",
+							time: 500,
+						},
+						{
+							type: "textMessage",
+							text: "NO NO NO",
+						},
+						{
+							who: "player",
+							type: "walk",
+							direction: "down",
+						},
+						{
+							who: "player",
+							type: "walk",
+							direction: "left",
+						},
+					],
+				},
+			],
+			[utils.asGridCoords(5, 7)]: [
+				{
+					events: [{ type: "changeMap", map: "House" }],
+				},
+			],
+		},
 	},
-	// House: {
-	// 	lowerSrc: "./images/maps/map.PNG",
-	// 	upperSrc: "./images/maps/map.PNG",
-	// 	gameObjects: {
-	// 		player: new GameObject({
-	// 			x: 2,
-	// 			y: 2,
-	// 		}),
-	// 		npc: new GameObject({
-	// 			x: 2,
-	// 			y: 2,
-	// 			src: "../assets/images/characters/professor.png",
-	// 		}),
-	// 	},
-	// },
+	House: {
+		lowerSrc: "../assets/images/maps/map.PNG",
+		upperSrc: "../assets/images/maps/mapForeground.PNG",
+		gameObjects: {
+			player: new Person({
+				isPlayerControlled: true,
+				x: utils.withGrid(3),
+				y: utils.withGrid(8),
+			}),
+			npcA: new Person({
+				x: utils.withGrid(10),
+				y: utils.withGrid(8),
+				src: "../assets/images/characters/npc_1.png",
+				talking: [
+					{
+						events: [{ type: "textMessage", text: "You made it!", faceHero: "npcA" }],
+					},
+				],
+			}),
+		},
+	},
 };

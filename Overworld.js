@@ -43,9 +43,33 @@ class Overworld {
 		step();
 	}
 
-	init() {
-		this.map = new OverworldMap(window.OverlordMaps.DemoRoom);
+	bindActionsInput() {
+		new KeyPressListener("Enter", () => {
+			// person to talk?
+			this.map.checkForActionCutscene();
+		});
+	}
+
+	bindPlayerPositionCheck() {
+		document.addEventListener("PersonWalkCompleted", (e) => {
+			if (e.detail.whoId === "player") {
+				// player's position has changed
+				this.map.checkForFootStepCutscene();
+			}
+		});
+	}
+
+	startMap(mapConfig) {
+		this.map = new OverworldMap(mapConfig);
+		this.map.overworld = this;
 		this.map.mountObjects();
+	}
+
+	init() {
+		this.startMap(window.OverworldMaps.DemoRoom);
+
+		this.bindActionsInput();
+		this.bindPlayerPositionCheck();
 
 		this.directionInput = new DirectionInput();
 		this.directionInput.init();
@@ -53,33 +77,32 @@ class Overworld {
 
 		this.startGameLoop();
 
-		this.map.startCutscene([
-			{
-				who: "player",
-				type: "walk",
-				direction: "down",
-			},
-			{
-				who: "player",
-				type: "walk",
-				direction: "down",
-			},
-			{
-				who: "player",
-				type: "walk",
-				direction: "down",
-			},
-			{
-				who: "npcA",
-				type: "walk",
-				direction: "left",
-			},
-			{
-				who: "npcA",
-				type: "stand",
-				direction: "up",
-				time: 800,
-			},
-		]);
+		// this.map.startCutscene([
+		// 	{
+		// 		who: "npcA",
+		// 		type: "walk",
+		// 		direction: "down",
+		// 	},
+		// 	{
+		// 		who: "npcA",
+		// 		type: "walk",
+		// 		direction: "down",
+		// 	},
+		// 	{
+		// 		who: "npcA",
+		// 		type: "walk",
+		// 		direction: "down",
+		// 	},
+		// 	{
+		// 		who: "npcA",
+		// 		type: "stand",
+		// 		direction: "left",
+		// 		time: 400,
+		// 	},
+		// 	{
+		// 		type: "textMessage",
+		// 		text: "Hello world...",
+		// 	},
+		// ]);
 	}
 }
