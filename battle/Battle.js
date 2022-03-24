@@ -5,7 +5,7 @@ class Battle {
 				{
 					...monsters.eevee,
 					team: "player",
-					hp: 30,
+					hp: 50,
 					maxHp: 50,
 					xp: 80,
 					maxXp: 100,
@@ -72,5 +72,16 @@ class Battle {
 			combatant.id = key;
 			combatant.init(this.element);
 		});
+
+		this.turnCycle = new TurnCycle({
+			battle: this,
+			onNewEvent: (event) => {
+				return new Promise((resolve) => {
+					const battleEvent = new BattleEvent(event, this);
+					battleEvent.init(resolve);
+				});
+			},
+		});
+		this.turnCycle.init();
 	}
 }

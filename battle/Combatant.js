@@ -33,17 +33,16 @@ class Combatant {
             <div class="life-container">
                 <p class="php">HP</p>
                 <div class="combatant_life-container" style="width:${this.hpPercent}%">
-                    ${
-						this.team === "player"
-							? `
-                    
-                    <p class="hp-number">${this.hp}/${this.maxHp}</p>
-                    
-                    `
-							: ""
-					}
                 </div>
-            </div>
+            </div>${
+				this.team === "player"
+					? `
+            
+            <p class="hp-number">${this.hp}/${this.maxHp}</p>
+            
+            `
+					: ""
+			}
         </div>
 
         ${
