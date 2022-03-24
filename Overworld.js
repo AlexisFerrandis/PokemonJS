@@ -77,32 +77,11 @@ class Overworld {
 
 		this.startGameLoop();
 
-		// this.map.startCutscene([
-		// 	{
-		// 		who: "npcA",
-		// 		type: "walk",
-		// 		direction: "down",
-		// 	},
-		// 	{
-		// 		who: "npcA",
-		// 		type: "walk",
-		// 		direction: "down",
-		// 	},
-		// 	{
-		// 		who: "npcA",
-		// 		type: "walk",
-		// 		direction: "down",
-		// 	},
-		// 	{
-		// 		who: "npcA",
-		// 		type: "stand",
-		// 		direction: "left",
-		// 		time: 400,
-		// 	},
-		// 	{
-		// 		type: "textMessage",
-		// 		text: "Hello world...",
-		// 	},
-		// ]);
+		this.map.startCutscene([
+			{
+				type: "textMessage",
+				text: "Bien le bonjour, bienvenue dans le monde de Pokemon !",
+			},
+		]);
 	}
 }

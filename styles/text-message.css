@@ -23,6 +23,12 @@
 	font-size: 10px;
 	text-shadow: 1px 1px 1px rgb(175, 175, 175);
 }
+.text-message span {
+	opacity: 0;
+}
+.text-message .revealed {
+	opacity: 1;
+}
 .text-message-btn {
 	position: absolute;
 	right: 6px;
