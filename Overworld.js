@@ -79,9 +79,12 @@ class Overworld {
 
 		this.map.startCutscene([
 			{
-				type: "textMessage",
-				text: "Bien le bonjour, bienvenue dans le monde de Pokemon !",
+				type: "battle",
 			},
+			// {
+			// 	type: "textMessage",
+			// 	text: "Bien le bonjour, bienvenue dans le monde de Pokemon !",
+			// },
 		]);
 	}
 }

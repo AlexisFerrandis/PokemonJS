@@ -1,0 +1,41 @@
+.battle {
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background-image: url(../assets/images/battlebacks/city_bg.png);
+	background-size: cover;
+	image-rendering: pixelated;
+}
+.battle-player,
+.battle-enemy {
+	position: absolute;
+	transform: scale(0.8);
+	width: 128px;
+	height: 180px;
+	overflow: hidden;
+	opacity: 0.2;
+}
+
+.battle-player img,
+.battle-enemy img {
+	pointer-events: none;
+}
+
+.battle-player {
+	left: 0;
+}
+.battle-enemy {
+	right: 0;
+	top: 0;
+}
+
+.text-container {
+	position: absolute;
+	width: 100%;
+	height: 52px;
+	bottom: 0;
+	background-color: #275265;
+	border: 2px solid black;
+}
