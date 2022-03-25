@@ -17,7 +17,7 @@ window.Actions = {
 		],
 	},
 	healStatus: {
-		name: "TOMATO",
+		name: "tomato",
 		targetType: "friendly",
 		success: [
 			{
@@ -34,7 +34,7 @@ window.Actions = {
 		],
 	},
 	confusionStatus: {
-		name: "CHOC MENTAL !",
+		name: "psycho",
 		success: [
 			{
 				type: "textMessage",

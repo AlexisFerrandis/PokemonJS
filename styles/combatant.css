@@ -1,7 +1,7 @@
 .combatant {
 	position: absolute;
-	width: 110px;
-	padding: 2px;
+	width: 116px;
+	padding: 3px;
 	background-color: #f4f7e1;
 	border: 2px solid #2a3214;
 	border-radius: 3px;
@@ -18,6 +18,8 @@
 	top: 100px;
 	left: 30%;
 	z-index: 2;
+	-webkit-box-shadow: 12px 13px 5px -8px #00000098;
+	box-shadow: 12px 13px 5px -8px #0000007a;
 }
 .combatant[data-team="enemy"] {
 	top: 15px;
@@ -46,7 +48,7 @@
 .combatant_name {
 	white-space: nowrap;
 	color: rgb(44, 44, 44);
-	font-size: 11px;
+	font-size: 7px;
 	padding-left: 1px;
 	padding-right: 2px;
 	margin-bottom: 2px;
@@ -59,10 +61,11 @@
 	height: 16px;
 }
 .life {
-	width: 92px;
+	width: 91px;
 	height: 7px;
 	padding: 1px;
-	margin-left: 10px;
+	margin-left: 16px;
+	margin-top: 5px;
 	border-radius: 7px;
 	background-color: #4d5f45;
 }
@@ -77,9 +80,9 @@
 }
 .life-container .php {
 	position: absolute;
-	left: 15px;
-	top: 16px;
-	font-size: 8px;
+	left: 22px;
+	top: 17px;
+	font-size: 4px;
 	font-weight: 800;
 	color: #cdb858;
 }
@@ -89,9 +92,9 @@
 }
 .hp-number {
 	position: absolute;
-	bottom: 0;
+	bottom: 1px;
 	right: 4px;
-	font-size: 7px;
+	font-size: 5px;
 	font-weight: 500;
 	color: rgb(44, 44, 44);
 }
@@ -99,7 +102,7 @@
 	display: flex;
 	position: absolute;
 	right: 0;
-	bottom: -8px;
+	bottom: -7px;
 	background-color: #b7d0c4;
 	border: 2px solid #2a3214;
 	border-left: 12px solid #2a3214;
@@ -107,8 +110,7 @@
 .xp-container p {
 	position: absolute;
 	left: -10px;
-	top: -2px;
-	font-size: 5px;
+	font-size: 3px;
 	color: #d3dc54;
 }
 .xpx {
@@ -122,9 +124,9 @@
 }
 .combatant_level {
 	position: absolute;
-	font-size: 10px;
+	font-size: 6px;
 	right: 4px;
-	top: 3px;
+	top: 0;
 	width: 17px;
 	height: 12px;
 	display: flex;
@@ -136,11 +138,11 @@
 
 .combatant_status {
 	position: absolute;
-	font-size: 5px;
-	left: 1px;
-	top: 17px;
-	padding: 0 1px 1px;
-	border-radius: 2px;
+	font-size: 4px;
+	left: 2px;
+	top: 16px;
+	padding: 1px 2px;
+	border-radius: 3px;
 	background: rgba(0, 0, 0, 0.8);
 	color: white;
 	text-transform: uppercase;

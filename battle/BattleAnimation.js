@@ -29,12 +29,12 @@ window.BattleAnimations = {
 		</svg>
 		`;
 
-		//Remove class when animation is fully complete
+		// rmv animtaion after complete
 		div.addEventListener("animationend", () => {
 			div.remove();
 		});
 
-		//Add to scene
+		// add to scene
 		document.querySelector(".battle").appendChild(div);
 
 		await utils.wait(820);

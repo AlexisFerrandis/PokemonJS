@@ -3,6 +3,7 @@ class Overworld {
 		this.element = config.element;
 		this.canvas = this.element.children[0];
 		this.ctx = this.canvas.getContext("2d");
+		// this.ctx.font = "VT323";
 		this.map = null;
 	}
 

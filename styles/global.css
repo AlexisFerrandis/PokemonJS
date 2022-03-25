@@ -4,15 +4,13 @@
 	--color-tertiary: #4467e4;
 }
 
-@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
-
 *,
 *:before,
 *:after {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: "VT323", monospace;
+	font-family: "Press Start 2P", cursive;
 	scroll-behavior: smooth;
 	text-decoration: none;
 	border: none;
@@ -23,6 +21,10 @@ body {
 	height: 100%;
 	overflow: hidden;
 	background: rgb(182, 182, 182);
+}
+h1 {
+	font-size: 20px;
+	text-align: center;
 }
 canvas {
 	background: #12041f;
