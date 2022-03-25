@@ -17,7 +17,12 @@ class BattleEvent {
 	}
 
 	async stateChange(resolve) {
-		const { caster, target, damage } = this.event;
+		const { caster, target, damage, recover, statusHandler, action } = this.event;
+		let who = this.event.onCaster ? caster : target;
+		if (action.targetType === "friendly") {
+			who = caster;
+		}
+
 		if (damage) {
 			// update target hp
 			target.update({
@@ -26,6 +31,29 @@ class BattleEvent {
 
 			// start blinking
 			target.monsterElement.classList.add("battle-dmg-blink");
+		}
+
+		if (recover) {
+			let newHp = who.hp + recover;
+			if (newHp > who.maxHp) {
+				newHp = who.maxHp;
+			}
+			who.update({
+				hp: newHp,
+			});
+		}
+
+		if (statusHandler) {
+			who.update({
+				status: {
+					...statusHandler,
+				},
+			});
+		}
+		if (statusHandler === null) {
+			who.update({
+				status: null,
+			});
 		}
 
 		await utils.wait(600);

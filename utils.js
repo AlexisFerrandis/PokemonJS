@@ -2,9 +2,11 @@ const utils = {
 	withGrid(n) {
 		return n * 16;
 	},
+
 	asGridCoords(x, y) {
 		return `${x * 16},${y * 16}`;
 	},
+
 	nextPosition(initialX, initialY, direction) {
 		let x = initialX;
 		let y = initialY;
@@ -20,6 +22,7 @@ const utils = {
 		}
 		return { x, y };
 	},
+
 	oppositeDirection(direction) {
 		if (direction === "left") {
 			return "right";
@@ -32,6 +35,7 @@ const utils = {
 		}
 		return "up";
 	},
+
 	loadWall(mapCollision) {
 		const boundaries = [];
 		for (let i = 0; i < mapCollision.length; i += 100) {
@@ -48,6 +52,7 @@ const utils = {
 		const boundariesObj = Object.fromEntries(boundaries);
 		return boundariesObj;
 	},
+
 	wait(ms) {
 		return new Promise((resolve) => {
 			setTimeout(() => {
@@ -55,6 +60,11 @@ const utils = {
 			}, ms);
 		});
 	},
+
+	randomFromArray(array) {
+		return array[Math.floor(Math.random() * array.length)];
+	},
+
 	emitEvent(name, detail) {
 		const event = new CustomEvent(name, {
 			detail,

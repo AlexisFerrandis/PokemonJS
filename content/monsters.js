@@ -4651,7 +4651,7 @@ window.monsters = {
 		BattlerShadowX: 0,
 		BattlerShadowSize: 2,
 		Evolutions: ["VAPOREON", "Item", "WATERSTONE", "JOLTEON", "Item", "THUNDERSTONE", "FLAREON", "Item", "FIRESTONE", "LEAFEON", "Location", "28", "GLACEON", "Location", "34", "SYLVEON", "HappinessMoveType", "FAIRY", "ESPEON", "HappinessDay", , "UMBREON", "HappinessNight"],
-		actions: ["damage1"],
+		actions: ["confusionStatus", "damage1", "healStatus"],
 	},
 	//         [1monsterName : {
 	//         Name : Vaporeon

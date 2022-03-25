@@ -22,6 +22,7 @@
 .combatant[data-team="enemy"] {
 	top: 15px;
 	right: 30%;
+	height: 30px;
 }
 
 /* .combatant_character_crop {
@@ -45,8 +46,8 @@
 .combatant_name {
 	white-space: nowrap;
 	color: rgb(44, 44, 44);
-	font-size: 11px; /*This is only so small because the component is scaled 2x in battle which is weird */
-	padding-left: 2px;
+	font-size: 11px;
+	padding-left: 1px;
 	padding-right: 2px;
 	margin-bottom: 2px;
 }
@@ -136,18 +137,19 @@
 .combatant_status {
 	position: absolute;
 	font-size: 5px;
-	left: 47px;
-	bottom: -3px;
-	padding-left: 2px;
-	padding-right: 2px;
+	left: 1px;
+	top: 17px;
+	padding: 0 1px 1px;
+	border-radius: 2px;
 	background: rgba(0, 0, 0, 0.8);
 	color: white;
+	text-transform: uppercase;
 	margin: 0;
 }
-.combatant_status[data-status="paralized"] {
-	color: red;
+.combatant_status[data-status="par"] {
+	background: yellow;
 }
-.combatant_status[data-status="sleepy"] {
+.combatant_status[data-status="psn"] {
 	background: #582a79;
 }
 

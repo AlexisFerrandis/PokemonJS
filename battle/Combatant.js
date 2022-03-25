@@ -28,6 +28,7 @@ class Combatant {
 
 		this.hudElement.innerHTML = `
         <p class="combatant_name">${this.Name}</p>
+		<p class="combatant_status"></p>
         <p class="combatant_level">Lv<span class="combatant-lvl"></span></p>
         <div class="life">
             <div class="life-container">
@@ -58,7 +59,7 @@ class Combatant {
         `
 				: ""
 		}
-        <p class="combatant_status"></p>
+        
         <img class="support" src="../assets/images/battlebacks/city_base1.png" alt="support" data-team=${this.team} />
     `;
 
@@ -88,7 +89,6 @@ class Combatant {
 		this.monsterElement.setAttribute("data-active", this.isActive);
 
 		// update hp and xp
-
 		if (this.hpNumber) {
 			this.hpNumber.innerText = `${this.hp}/${this.maxHp}`;
 		}
@@ -97,6 +97,65 @@ class Combatant {
 
 		// update lvl
 		this.hudElement.querySelector(".combatant-lvl").innerText = this.level;
+
+		// update status
+		const statusElement = this.hudElement.querySelector(".combatant_status");
+		if (this.status) {
+			statusElement.innerText = this.status.type;
+			statusElement.style.display = "block";
+		} else {
+			statusElement.innerText = "";
+			statusElement.style.display = "none";
+		}
+	}
+
+	getReplacedEvents(originalEvents) {
+		if (this.status?.type === "cfs" && utils.randomFromArray([true, false, false])) {
+			return [
+				{
+					type: "textMessage",
+					text: `${this.Name} is confused`,
+				},
+				{
+					type: "textMessage",
+					text: `${this.Name} is hurting himself ! `,
+				},
+			];
+		}
+
+		return originalEvents;
+	}
+
+	getPostEvents() {
+		if (this.status?.type === "hea") {
+			return [
+				{
+					type: "textMessage",
+					text: "this monster is healing",
+				},
+				{
+					type: "stateChange",
+					recover: 5,
+					onCaster: true,
+				},
+			];
+		}
+		return [];
+	}
+
+	decrementStatus() {
+		if (this.status?.expiresIn > 0) {
+			this.status.expiresIn--;
+			if (this.status?.expiresIn === 0) {
+				const statusType = this.status.type;
+				this.update({ status: null });
+				return {
+					type: "textMessage",
+					text: `${this.Name} is no longer ${statusType}`,
+				};
+			}
+		}
+		return null;
 	}
 
 	init(container) {
