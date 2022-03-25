@@ -5,7 +5,7 @@ class Battle {
 				{
 					...monsters.eevee,
 					team: "player",
-					hp: 50,
+					hp: 40,
 					maxHp: 50,
 					xp: 80,
 					maxXp: 100,
@@ -18,7 +18,7 @@ class Battle {
 				{
 					...monsters.ivysaur,
 					team: "enemy",
-					hp: 20,
+					hp: 30,
 					maxHp: 50,
 					xp: 20,
 					maxXp: 100,

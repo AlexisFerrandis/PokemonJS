@@ -161,7 +161,7 @@ window.monsters = {
 		BattlerShadowX: 0,
 		BattlerShadowSize: 2,
 		Evolutions: ["IVYSAUR", "Level", 16],
-		Actions: ["damage1"],
+		actions: ["damage1"],
 	},
 
 	ivysaur: {
@@ -197,7 +197,7 @@ window.monsters = {
 		BattlerShadowX: 0,
 		BattlerShadowSize: 2,
 		Evolutions: ["VENUSAUR", "Level", 32],
-		Actions: ["damage1"],
+		actions: ["damage1"],
 	},
 	venusaur: {
 		Name: "Venusaur",
@@ -231,7 +231,7 @@ window.monsters = {
 		BattlerEnemyY: 11,
 		BattlerShadowX: 0,
 		BattlerShadowSize: 3,
-		Actions: ["damage1"],
+		actions: ["damage1"],
 	},
 
 	charmander: {
@@ -4651,7 +4651,7 @@ window.monsters = {
 		BattlerShadowX: 0,
 		BattlerShadowSize: 2,
 		Evolutions: ["VAPOREON", "Item", "WATERSTONE", "JOLTEON", "Item", "THUNDERSTONE", "FLAREON", "Item", "FIRESTONE", "LEAFEON", "Location", "28", "GLACEON", "Location", "34", "SYLVEON", "HappinessMoveType", "FAIRY", "ESPEON", "HappinessDay", , "UMBREON", "HappinessNight"],
-		Actions: ["damage1"],
+		actions: ["damage1"],
 	},
 	//         [1monsterName : {
 	//         Name : Vaporeon

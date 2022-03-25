@@ -3,17 +3,17 @@ window.Actions = {
 		name: "whomp",
 		success: [
 			{
-				type: "TextMessage",
-				text: "uses Whomp",
+				type: "textMessage",
+				text: "{CASTER} uses {ACTION}",
 			},
-			// {
-			// 	type: "animation",
-			// 	animation: "to define",
-			// },
-			// {
-			// 	type: "stateChange",
-			// 	damage: 10,
-			// },
+			{
+				type: "animation",
+				animation: "movement",
+			},
+			{
+				type: "stateChange",
+				damage: 10,
+			},
 		],
 	},
 };

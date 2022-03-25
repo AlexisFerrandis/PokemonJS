@@ -2,14 +2,13 @@ class TurnCycle {
 	constructor({ battle, onNewEvent }) {
 		this.battle = battle;
 		this.onNewEvent = onNewEvent;
-		this.currentTeam = "player";
+		this.currentTeam = "player"; // or ennemy
 	}
 
 	async turn() {
 		// caster
 		const casterId = this.battle.activeCombatants[this.currentTeam];
 		const caster = this.battle.combatants[casterId];
-		console.log(caster);
 
 		const enemyId = this.battle.activeCombatants[caster.team === "player" ? "enemy" : "player"];
 		const enemy = this.battle.combatants[enemyId];
@@ -19,12 +18,12 @@ class TurnCycle {
 			caster,
 			enemy,
 		});
-		const resultingEvents = submission.actions.success;
-		for (let i = 0; i < 7; i++) {
+		const resultingEvents = submission.action.success;
+		for (let i = 0; i < resultingEvents.length; i++) {
 			const event = {
 				...resultingEvents[i],
 				submission,
-				actions: submission.action,
+				action: submission.action,
 				caster,
 				target: submission.target,
 			};

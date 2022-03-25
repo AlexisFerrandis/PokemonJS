@@ -17,6 +17,7 @@
 .combatant[data-team="player"] {
 	top: 100px;
 	left: 30%;
+	z-index: 2;
 }
 .combatant[data-team="enemy"] {
 	top: 15px;

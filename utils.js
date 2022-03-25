@@ -48,6 +48,13 @@ const utils = {
 		const boundariesObj = Object.fromEntries(boundaries);
 		return boundariesObj;
 	},
+	wait(ms) {
+		return new Promise((resolve) => {
+			setTimeout(() => {
+				resolve();
+			}, ms);
+		});
+	},
 	emitEvent(name, detail) {
 		const event = new CustomEvent(name, {
 			detail,

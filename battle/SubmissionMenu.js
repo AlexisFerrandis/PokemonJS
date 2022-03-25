@@ -7,7 +7,7 @@ class SubmissionMenu {
 
 	decide() {
 		this.onComplete({
-			actions: Actions[this.caster.Actions[0]],
+			action: Actions[this.caster.actions[0]],
 			target: this.enemy,
 		});
 	}

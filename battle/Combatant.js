@@ -28,17 +28,17 @@ class Combatant {
 
 		this.hudElement.innerHTML = `
         <p class="combatant_name">${this.Name}</p>
-        <p class="combatant_level">Lv</p>
+        <p class="combatant_level">Lv<span class="combatant-lvl"></span></p>
         <div class="life">
             <div class="life-container">
                 <p class="php">HP</p>
-                <div class="combatant_life-container" style="width:${this.hpPercent}%">
+                <div class="combatant_life-container">
                 </div>
             </div>${
 				this.team === "player"
 					? `
             
-            <p class="hp-number">${this.hp}/${this.maxHp}</p>
+            <p class="hp-number"></p>
             
             `
 					: ""
@@ -51,7 +51,7 @@ class Combatant {
         <div class="xp-container">
             <p>EXP</p>
             <div class="xpx">
-                <div class="combatant_xp-container" style="width:${this.xpPercent}%">
+                <div class="combatant_xp-container">
                 </div>
             </div>
         </div>
@@ -62,8 +62,9 @@ class Combatant {
         <img class="support" src="../assets/images/battlebacks/city_base1.png" alt="support" data-team=${this.team} />
     `;
 
-		this.hpFills = this.hudElement.querySelectorAll(".combatant_life-container p");
-		this.xpFills = this.hudElement.querySelectorAll(".combatant_xp-container p");
+		this.hpFills = this.hudElement.querySelectorAll(".combatant_life-container");
+		this.hpNumber = this.hudElement.querySelector(".hp-number");
+		this.xpFills = this.hudElement.querySelectorAll(".combatant_xp-container");
 
 		// display monster
 		this.monsterElement = document.createElement("img");
@@ -87,11 +88,15 @@ class Combatant {
 		this.monsterElement.setAttribute("data-active", this.isActive);
 
 		// update hp and xp
-		this.hpFills.forEach((fill) => (fill.style.width = `${this.hpPercent}px`));
-		this.xpFills.forEach((fill) => (fill.style.width = `${this.xpPercent}px`));
+
+		if (this.hpNumber) {
+			this.hpNumber.innerText = `${this.hp}/${this.maxHp}`;
+		}
+		this.hpFills.forEach((fill) => (fill.style.width = `${this.hpPercent}%`));
+		this.xpFills.forEach((fill) => (fill.style.width = `${this.xpPercent}%`));
 
 		// update lvl
-		this.hudElement.querySelector(".combatant_level").innerText += this.level;
+		this.hudElement.querySelector(".combatant-lvl").innerText = this.level;
 	}
 
 	init(container) {

@@ -40,3 +40,42 @@
 	border: 2px solid rgb(44, 44, 44);
 	border-radius: 4px;
 }
+
+/* animation */
+@keyframes battle-dmg-blink {
+	to {
+		visibility: hidden;
+	}
+}
+.battle-dmg-blink {
+	animation: battle-dmg-blink 0.2s steps(2, start) infinite;
+}
+
+@keyframes battle-movement-right {
+	0% {
+		transform: translateX(0) scale(0.6);
+	}
+	25% {
+		transform: translateX(15px) scale(0.6);
+	}
+	100% {
+		transform: translateX(0) scale(0.6);
+	}
+}
+.battle-movement-right {
+	animation: battle-movement-right 0.6s;
+}
+@keyframes battle-movement-left {
+	0% {
+		transform: translateX(0) scale(0.6);
+	}
+	25% {
+		transform: translateX(-15px) scale(0.6);
+	}
+	100% {
+		transform: translateX(0) scale(0.6);
+	}
+}
+.battle-movement-left {
+	animation: battle-movement-left 0.6s;
+}
