@@ -1,7 +1,7 @@
 .combatant {
 	position: absolute;
 	width: 116px;
-	padding: 3px;
+	padding: 5px 3px 3px;
 	background-color: #f4f7e1;
 	border: 2px solid #2a3214;
 	border-radius: 3px;
@@ -82,13 +82,14 @@
 .life-container .php {
 	position: absolute;
 	left: 22px;
-	top: 17px;
+	top: 19px;
 	font-size: 4px;
 	font-weight: 800;
 	color: #cdb858;
 }
 .combatant_life-container {
 	height: 3px;
+	border-top: 1px solid #59cf83;
 	background-color: #83f8b6;
 	transition: width 0.3s;
 }
@@ -129,7 +130,7 @@
 	position: absolute;
 	font-size: 6px;
 	right: 4px;
-	top: 0;
+	top: 3px;
 	width: 17px;
 	height: 12px;
 	display: flex;
@@ -166,6 +167,7 @@
 .monster[data-team="player"] {
 	bottom: 20px;
 	left: -15px;
+	z-index: 0;
 }
 .monster[data-team="enemy"] {
 	top: -20px;
@@ -173,11 +175,11 @@
 }
 .monster[data-active="false"] {
 	opacity: 0;
-	transform: translateX(-40px) scale(0.6);
+	transform: translateY(40px) scale(0.6);
 }
 .monster[data-active="true"] {
 	opacity: 1;
-	transform: translateX(0) scale(0.6);
+	transform: translateY(0) scale(0.6);
 }
 
 .support[data-team="enemy"] {

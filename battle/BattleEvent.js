@@ -55,6 +55,11 @@ class BattleEvent {
 
 		await utils.wait(600);
 
+		// update team display
+		this.battle.playerTeam.update();
+		this.battle.enemyTeam.update();
+
+		// stop blink
 		target.monsterElement.classList.remove("battle-dmg-blink");
 		resolve();
 	}

@@ -39,6 +39,7 @@
 	background-color: #275265;
 	border: 2px solid rgb(44, 44, 44);
 	border-radius: 4px;
+	z-index: 2;
 }
 
 /* animation */

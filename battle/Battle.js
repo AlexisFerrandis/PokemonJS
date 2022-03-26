@@ -29,6 +29,20 @@ class Battle {
 				},
 				this
 			),
+			player3: new Combatant(
+				{
+					...monsters.charmander,
+					team: "player",
+					hp: 40,
+					maxHp: 50,
+					xp: 80,
+					maxXp: 100,
+					level: 1,
+					status: null,
+					isPlayerControlled: true,
+				},
+				this
+			),
 			enemy1: new Combatant(
 				{
 					...monsters.ivysaur,
@@ -89,11 +103,25 @@ class Battle {
 		this.createElement();
 		container.appendChild(this.element);
 
+		// team
+		this.playerTeam = new Team("player", "player");
+		this.enemyTeam = new Team("enemy", "MECHANT");
+
 		Object.keys(this.combatants).forEach((key) => {
 			let combatant = this.combatants[key];
 			combatant.id = key;
 			combatant.init(this.element);
+
+			//Add to correct team
+			if (combatant.team === "player") {
+				this.playerTeam.combatants.push(combatant);
+			} else if (combatant.team === "enemy") {
+				this.enemyTeam.combatants.push(combatant);
+			}
 		});
+
+		this.playerTeam.init(this.element);
+		this.enemyTeam.init(this.element);
 
 		this.turnCycle = new TurnCycle({
 			battle: this,

@@ -1,0 +1,32 @@
+.team {
+	display: flex;
+	position: absolute;
+	top: 4px;
+	gap: 4px;
+}
+.pokeball-battle {
+	width: 8px;
+	height: 8px;
+}
+.team[data-team="player"] {
+	left: 4px;
+}
+.team[data-team="enemy"] {
+	right: 4px;
+}
+
+/* Start stateful paths as display:none */
+.team .dead-monster {
+	display: none;
+}
+.team .active-monster-indicator {
+	display: none;
+}
+
+/* Display them as opted in by data-attributes */
+.team [data-dead="true"] .dead-monster {
+	display: block;
+}
+.team [data-active="true"] .active-monster-indicator {
+	display: block;
+}
