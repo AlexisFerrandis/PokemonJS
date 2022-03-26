@@ -79,6 +79,17 @@
 	margin: 0;
 }
 
+.keyboard-menu button[data-description="Return to previous page"] {
+	position: absolute;
+	bottom: 2px;
+	right: 4px;
+	text-align: right;
+	transform: scaleY(1.4);
+}
+.keyboard-menu button[data-description="Return to previous page"]:focus::before {
+	display: none;
+}
+
 /* Battle specific */
 .battle .keyboard-menu {
 	right: 0;
@@ -86,18 +97,13 @@
 	width: 40%;
 }
 
-@keyframes arrow-left-and-right {
-	0% {
-		transform: translateX(0) rotate(-90deg) scaleY(0.6);
-	}
-	50% {
-		transform: translateX(1px) rotate(-90deg) scaleY(0.6);
-	}
-	100% {
-		transform: translateX(0) rotate(-90deg) scaleY(0.6);
-	}
+.battle .keyboard-menu span {
+	font-size: 8px;
+	color: rgb(44, 44, 44);
+	text-shadow: -1px 1px 1px rgba(49, 49, 49, 0.3);
 }
-@-moz-keyframes arrow-left {
+
+@keyframes arrow-left-and-right {
 	0% {
 		transform: translateX(0) rotate(-90deg) scaleY(0.6);
 	}

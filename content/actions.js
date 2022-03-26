@@ -58,4 +58,26 @@ window.Actions = {
 			},
 		],
 	},
+
+	// items
+	item_recoverStatus: {
+		name: "status",
+		description: "Feeling fresh",
+		targetType: "friendly",
+		success: [
+			{ type: "textMessage", text: "{CASTER} uses a {ACTION}!" },
+			{ type: "stateChange", statusHandler: null },
+			{ type: "textMessage", text: "Feeling fresh!" },
+		],
+	},
+	item_recoverHp: {
+		name: "Potion",
+		description: "Heals 20 HP",
+		targetType: "friendly",
+		success: [
+			{ type: "textMessage", text: "{CASTER} sprinkles on some {ACTION}!" },
+			{ type: "stateChange", recover: 20 },
+			{ type: "textMessage", text: "{CASTER} recovers HP!" },
+		],
+	},
 };
