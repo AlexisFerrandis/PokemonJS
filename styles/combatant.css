@@ -6,6 +6,7 @@
 	border: 2px solid #2a3214;
 	border-radius: 3px;
 	text-shadow: 1px 1px 1px rgba(49, 49, 49, 0.3);
+	transition: opacity 0.4s;
 }
 .battle .combatant[data-active="false"] {
 	opacity: 0;
@@ -160,6 +161,7 @@
 .monster {
 	position: absolute;
 	transform: scale(0.6);
+	transition: 0.4s;
 }
 .monster[data-team="player"] {
 	bottom: 20px;
@@ -171,9 +173,11 @@
 }
 .monster[data-active="false"] {
 	opacity: 0;
+	transform: translateX(-40px) scale(0.6);
 }
 .monster[data-active="true"] {
 	opacity: 1;
+	transform: translateX(0) scale(0.6);
 }
 
 .support[data-team="enemy"] {

@@ -5,14 +5,26 @@ class Battle {
 				{
 					...monsters.eevee,
 					team: "player",
+					hp: 10,
+					maxHp: 50,
+					xp: 80,
+					maxXp: 100,
+					level: 1,
+					status: null,
+					isPlayerControlled: true,
+				},
+				this
+			),
+			player2: new Combatant(
+				{
+					...monsters.charmander,
+					team: "player",
 					hp: 40,
 					maxHp: 50,
 					xp: 80,
 					maxXp: 100,
 					level: 1,
-					status: {
-						type: "cfs",
-					},
+					status: null,
 					isPlayerControlled: true,
 				},
 				this
@@ -21,7 +33,7 @@ class Battle {
 				{
 					...monsters.ivysaur,
 					team: "enemy",
-					hp: 30,
+					hp: 10,
 					maxHp: 50,
 					xp: 20,
 					maxXp: 100,

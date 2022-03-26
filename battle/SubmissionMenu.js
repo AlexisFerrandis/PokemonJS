@@ -1,7 +1,8 @@
 class SubmissionMenu {
-	constructor({ caster, enemy, onComplete, items }) {
+	constructor({ caster, enemy, onComplete, items, replacements }) {
 		this.caster = caster;
 		this.enemy = enemy;
+		this.replacements = replacements;
 		this.onComplete = onComplete;
 
 		let quantityMap = {};
@@ -38,7 +39,6 @@ class SubmissionMenu {
 					label: "Attack",
 					description: "Choose an attack",
 					handler: () => {
-						console.log("here");
 						this.keyboardMenu.setOptions(this.getPages().attacks);
 					},
 				},
@@ -46,7 +46,6 @@ class SubmissionMenu {
 					label: "Items",
 					description: "Choose an item",
 					handler: () => {
-						// go to item menu
 						this.keyboardMenu.setOptions(this.getPages().items);
 					},
 				},
@@ -54,7 +53,7 @@ class SubmissionMenu {
 					label: "Swap",
 					description: "Change to another monster",
 					handler: () => {
-						// see ur monsters
+						this.keyboardMenu.setOptions(this.getPages().replacements);
 					},
 				},
 				{
@@ -80,7 +79,6 @@ class SubmissionMenu {
 			],
 			items: [
 				...this.items.map((item) => {
-					console.log(item);
 					const action = Actions[item.actionId];
 					return {
 						label: action.name,
@@ -95,7 +93,26 @@ class SubmissionMenu {
 				}),
 				backOption,
 			],
+			replacements: [
+				...this.replacements.map((replacement) => {
+					return {
+						label: replacement.Name,
+						description: replacement.description,
+						handler: () => {
+							this.menuSubmitReplacement(replacement);
+						},
+					};
+				}),
+				backOption,
+			],
 		};
+	}
+
+	menuSubmitReplacement(replacement) {
+		this.keyboardMenu?.end();
+		this.onComplete({
+			replacement,
+		});
 	}
 
 	menuSubmit(action, instanceId) {

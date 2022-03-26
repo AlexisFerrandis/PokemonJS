@@ -267,6 +267,7 @@ window.monsters = {
 		BattlerShadowX: 0,
 		BattlerShadowSize: 1,
 		Evolutions: ["CHARMELEON", "Level", 16],
+		actions: ["damage1"],
 	},
 
 	charmeleon: {
