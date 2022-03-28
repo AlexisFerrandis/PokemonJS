@@ -336,6 +336,7 @@ window.monsters = {
 		BattlerEnemyY: 3,
 		BattlerShadowX: 0,
 		BattlerShadowSize: 3,
+		actions: ["damage1"],
 	},
 
 	squirtle: {

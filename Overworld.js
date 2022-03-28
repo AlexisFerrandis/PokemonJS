@@ -78,14 +78,11 @@ class Overworld {
 
 		this.startGameLoop();
 
-		this.map.startCutscene([
-			{
-				type: "battle",
-			},
-			// {
-			// 	type: "textMessage",
-			// 	text: "Bien le bonjour, bienvenue dans le monde de Pokemon !",
-			// },
-		]);
+		// this.map.startCutscene([
+		// 	{
+		// 		type: "battle",
+		// 		enemyId: "beth",
+		// 	},
+		// ]);
 	}
 }

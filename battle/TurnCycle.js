@@ -1,7 +1,8 @@
 class TurnCycle {
-	constructor({ battle, onNewEvent }) {
+	constructor({ battle, onNewEvent, onWinner }) {
 		this.battle = battle;
 		this.onNewEvent = onNewEvent;
+		this.onWinner = onWinner;
 		this.currentTeam = "player"; // or ennemy
 	}
 
@@ -34,6 +35,10 @@ class TurnCycle {
 		}
 
 		if (submission.instanceId) {
+			// add list to percist
+			this.battle.usedInstanceIds[submission.instanceId] = true;
+
+			// rmv item for battle state
 			this.battle.items = this.battle.items.filter((i) => i.instanceId !== submission.instanceId);
 		}
 
@@ -56,8 +61,22 @@ class TurnCycle {
 				type: "textMessage",
 				text: `${submission.target.Name} is dead!`,
 			});
-		}
 
+			if (submission.target.team === "enemy") {
+				const playerActiveMonster = this.battle.activeCombatants.player;
+				const xp = submission.target.givesXp;
+
+				await this.onNewEvent({
+					type: "textMessage",
+					text: `Gained ${xp} XP!`,
+				});
+				await this.onNewEvent({
+					type: "giveXp",
+					xp,
+					combatant: this.battle.combatants[playerActiveMonster],
+				});
+			}
+		}
 		// is there a winner? => end
 		const winner = this.getWinningTeam();
 		if (winner) {
@@ -65,7 +84,7 @@ class TurnCycle {
 				type: "textMessage",
 				text: "U WIN :)",
 			});
-			//END THE BATTLE -> TODO
+			this.onWinner(winner);
 			return;
 		}
 
@@ -129,10 +148,11 @@ class TurnCycle {
 	}
 
 	async init() {
-		// await this.onNewEvent({
-		// 	type: "textMessage",
-		// 	text: "The battle is running",
-		// });
+		// first battle event
+		await this.onNewEvent({
+			type: "textMessage",
+			text: `${this.battle.enemy.name} veut se battre !`,
+		});
 
 		// start first turn
 		this.turn();

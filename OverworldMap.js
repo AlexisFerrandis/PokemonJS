@@ -15,7 +15,7 @@ class OverworldMap {
 	}
 
 	drawLowerImage(ctx, cameraPerson) {
-		let ratio = 3.12; // perhaps to reconfigure
+		let ratio = 3.125; // perhaps to reconfigure best now 3.125
 		ctx.drawImage(this.lowerImage, utils.withGrid(10.5) - cameraPerson.x, utils.withGrid(6) - cameraPerson.y, this.upperImage.width * ratio, this.upperImage.height * ratio);
 	}
 
@@ -92,13 +92,13 @@ window.OverworldMaps = {
 		upperSrc: "../assets/images/maps/mapForeground.PNG",
 		gameObjects: {
 			player: new Person({
-				x: utils.withGrid(4),
-				y: utils.withGrid(4),
+				x: utils.withGrid(50),
+				y: utils.withGrid(50),
 				isPlayerControlled: true,
 			}),
 			professor: new Person({
-				x: utils.withGrid(3),
-				y: utils.withGrid(3),
+				x: utils.withGrid(49),
+				y: utils.withGrid(47),
 				src: "../assets/images/characters/professor.png",
 				behaviorLoop: [
 					{
@@ -123,10 +123,25 @@ window.OverworldMaps = {
 						direction: "down",
 					},
 				],
+				talking: [
+					{
+						events: [
+							{
+								type: "textMessage",
+								text: "Hahaha",
+								facePlayer: "npcA",
+							},
+							{
+								type: "battle",
+								enemyId: "rival",
+							},
+						],
+					},
+				],
 			}),
 			npcA: new Person({
-				x: utils.withGrid(5),
-				y: utils.withGrid(1),
+				x: utils.withGrid(44),
+				y: utils.withGrid(51),
 				src: "../assets/images/characters/npc_1.png",
 				behaviorLoop: [
 					{
@@ -163,10 +178,14 @@ window.OverworldMaps = {
 								text: "U'r the chosen one",
 							},
 							{
-								who: "player",
-								type: "walk",
-								direction: "left",
+								type: "battle",
+								enemyId: "beth",
 							},
+							// {
+							// 	who: "player",
+							// 	type: "walk",
+							// 	direction: "left",
+							// },
 						],
 					},
 				],
