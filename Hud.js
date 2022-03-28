@@ -10,6 +10,11 @@ class Hud {
 	}
 
 	createElement() {
+		if (this.element) {
+			this.element.remove();
+			this.scoreboard = [];
+		}
+
 		this.element = document.createElement("div");
 		this.element.classList.add("hud");
 
@@ -37,6 +42,11 @@ class Hud {
 
 		document.addEventListener("PlayerStateUpdated", () => {
 			this.update();
+		});
+
+		document.addEventListener("LineupChanged", () => {
+			this.createElement();
+			container.appendChild(this.element);
 		});
 	}
 }
