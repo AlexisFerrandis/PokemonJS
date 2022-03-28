@@ -16,7 +16,7 @@ class Combatant {
 	}
 
 	get isActive() {
-		return this.battle.activeCombatants[this.team] === this.id;
+		return this.battle?.activeCombatants[this.team] === this.id;
 	}
 
 	get givesXp() {
@@ -65,6 +65,7 @@ class Combatant {
 		}
         
         <img class="support" src="../assets/images/battlebacks/city_base1.png" alt="support" data-team=${this.team} />
+		<img class="combatant_icon" src="../assets/images/monsters/Icons/${this.Name}.png" alt="${this.Name}" />
     `;
 
 		this.hpFills = this.hudElement.querySelectorAll(".combatant_life-container");
@@ -106,6 +107,7 @@ class Combatant {
 		const statusElement = this.hudElement.querySelector(".combatant_status");
 		if (this.status) {
 			statusElement.innerText = this.status.type;
+			statusElement.setAttribute("data-status", this.status.type);
 			statusElement.style.display = "block";
 		} else {
 			statusElement.innerText = "";

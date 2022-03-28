@@ -15,6 +15,10 @@
 	opacity: 1;
 }
 
+.battle .combatant .combatant_icon {
+	display: none;
+}
+
 .combatant[data-team="player"] {
 	top: 100px;
 	left: 30%;
@@ -153,6 +157,12 @@
 }
 .combatant_status[data-status="par"] {
 	background: yellow;
+}
+.combatant_status[data-status="gel"] {
+	background: rgb(0, 255, 255);
+}
+.combatant_status[data-status="cfs"] {
+	background: rgb(255, 160, 17);
 }
 .combatant_status[data-status="psn"] {
 	background: #582a79;
