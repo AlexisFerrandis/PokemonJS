@@ -16,11 +16,12 @@ class OverworldMap {
 	}
 
 	drawLowerImage(ctx, cameraPerson) {
-		let ratio = 3.125; // perhaps to reconfigure best now 3.125
+		let ratio = 0.5; // perhaps to reconfigure best now 0.5
 		ctx.drawImage(this.lowerImage, utils.withGrid(10.5) - cameraPerson.x, utils.withGrid(6) - cameraPerson.y, this.upperImage.width * ratio, this.upperImage.height * ratio);
 	}
 
 	drawUpperImage(ctx, cameraPerson) {
+		let ratio = 0.5;
 		ctx.drawImage(this.upperImage, utils.withGrid(10.5) - cameraPerson.x, utils.withGrid(6) - cameraPerson.y, this.upperImage.width * ratio, this.upperImage.height * ratio);
 	}
 
@@ -96,88 +97,39 @@ class OverworldMap {
 }
 
 window.OverworldMaps = {
-	DemoRoom: {
+	PaletteTown: {
 		lowerSrc: "../assets/images/maps/map.PNG",
 		upperSrc: "../assets/images/maps/mapForeground.PNG",
 		gameObjects: {
+			// player
 			player: new Person({
-				x: utils.withGrid(50),
-				y: utils.withGrid(50),
+				x: utils.withGrid(44),
+				y: utils.withGrid(49),
 				isPlayerControlled: true,
 			}),
-			professor: new Person({
-				x: utils.withGrid(49),
-				y: utils.withGrid(47),
-				src: "../assets/images/characters/professor.png",
-				behaviorLoop: [
-					{
-						type: "walk",
-						direction: "left",
-					},
-					{
-						type: "stand",
-						direction: "up",
-						time: 800,
-					},
-					{
-						type: "walk",
-						direction: "up",
-					},
-					{
-						type: "walk",
-						direction: "right",
-					},
-					{
-						type: "walk",
-						direction: "down",
-					},
-				],
-				talking: [
-					{
-						events: [
-							{ type: "textMessage", text: "Bahaha!", faceHero: "npcA" },
-							{ type: "addStoryFlag", flag: "TALKED_TO_PROFESSOR" },
-						],
-					},
-				],
-			}),
+
+			// rival
 			npcA: new Person({
-				x: utils.withGrid(44),
-				y: utils.withGrid(51),
-				src: "../assets/images/characters/npc_1.png",
+				x: utils.withGrid(59),
+				y: utils.withGrid(55),
+				src: "../assets/images/characters/rival.png",
 				behaviorLoop: [
 					{
 						type: "stand",
 						direction: "left",
-						time: 800,
-					},
-					{
-						type: "stand",
-						direction: "up",
-						time: 800,
-					},
-					{
-						type: "stand",
-						direction: "right",
-						time: 800,
-					},
-					{
-						type: "stand",
-						direction: "up",
-						time: 200,
 					},
 				],
 				talking: [
-					{
-						required: ["TALKED_TO_PROFESSOR"],
-						events: [{ type: "textMessage", text: "Isn't the professor the coolest?", faceHero: "npcA" }],
-					},
+					// {
+					// 	required: ["TALKED_TO_npcB"],
+					// 	events: [{ type: "textMessage", text: "Isn't the npcB the coolest?", facePlayer: "npcA" }],
+					// },
 					{
 						events: [
-							{ type: "textMessage", text: "I'm going to crush you!", faceHero: "npcA" },
-							{ type: "battle", enemyId: "beth" },
-							{ type: "addStoryFlag", flag: "DEFEATED_BETH" },
-							{ type: "textMessage", text: "You crushed me like weak potato.", faceHero: "npcA" },
+							{ type: "textMessage", text: "Mon carapuce va t'écraser !", facePlayer: "npcA" },
+							{ type: "battle", enemyId: "rival" },
+							{ type: "addStoryFlag", flag: "DEFEATED_RIVAL" },
+							{ type: "textMessage", text: "You crushed me like weak potato.", facePlayer: "npcA" },
 							// {
 							// 	type: "battle",
 							// 	enemyId: "beth",
@@ -191,66 +143,254 @@ window.OverworldMaps = {
 					},
 				],
 			}),
+
+			// old lady
+			npcB: new Person({
+				x: utils.withGrid(48),
+				y: utils.withGrid(44),
+				src: "../assets/images/characters/NPC_11.png",
+				behaviorLoop: [
+					{
+						type: "stand",
+						direction: "down",
+						time: 2000,
+					},
+					{
+						type: "stand",
+						direction: "left",
+						time: 2000,
+					},
+				],
+				talking: [
+					{
+						events: [
+							{ type: "textMessage", text: "Les Pokemons sont pleins de mysteres...", facePlayer: "npcB" },
+							// { type: "addStoryFlag", flag: "TALKED_TO_npcB" },
+						],
+					},
+				],
+			}),
+
+			// swimmer
+			npcC: new Person({
+				x: utils.withGrid(44),
+				y: utils.withGrid(64),
+				src: "../assets/images/characters/trainer_SWIMMER2_M.png",
+				behaviorLoop: [
+					{
+						type: "walk",
+						direction: "up",
+					},
+					{
+						type: "walk",
+						direction: "up",
+					},
+					{
+						type: "walk",
+						direction: "right",
+					},
+					{
+						type: "walk",
+						direction: "right",
+					},
+					{
+						type: "walk",
+						direction: "down",
+					},
+					{
+						type: "walk",
+						direction: "down",
+					},
+					{
+						type: "walk",
+						direction: "left",
+					},
+					{
+						type: "walk",
+						direction: "left",
+					},
+				],
+			}),
+
+			// dude near flower
+			npcD: new Person({
+				x: utils.withGrid(46),
+				y: utils.withGrid(55),
+				src: "../assets/images/characters/NPC_06.png",
+				behaviorLoop: [
+					{
+						type: "stand",
+						direction: "left",
+						time: 4000,
+					},
+
+					{
+						type: "stand",
+						direction: "up",
+						time: 4000,
+					},
+				],
+				talking: [
+					{
+						events: [{ type: "textMessage", text: "J'adore le primptemps et les fleurs.", facePlayer: "npcD" }],
+					},
+				],
+			}),
+
+			// girl
+			npcE: new Person({
+				x: utils.withGrid(57),
+				y: utils.withGrid(60),
+				src: "../assets/images/characters/NPC_26.png",
+				behaviorLoop: [
+					{
+						type: "stand",
+						direction: "left",
+						time: 2000,
+					},
+				],
+				talking: [
+					{
+						events: [{ type: "textMessage", text: "On vit dans une société...", facePlayer: "npcE" }],
+					},
+				],
+			}),
 		},
 		walls: utils.loadWall(collisions),
 		cutsceneSpaces: {
-			[utils.asGridCoords(5, 5)]: [
+			[utils.asGridCoords(54, 55)]: [
 				{
 					events: [
 						{
 							who: "npcA",
 							type: "walk",
-							direction: "down",
+							direction: "left",
+						},
+						{
+							who: "npcA",
+							type: "walk",
+							direction: "left",
+						},
+						{
+							who: "npcA",
+							type: "walk",
+							direction: "left",
+						},
+						{
+							who: "npcA",
+							type: "walk",
+							direction: "left",
 						},
 						{
 							who: "npcA",
 							type: "stand",
-							direction: "down",
+							direction: "left",
 							time: 500,
 						},
 						{
 							type: "textMessage",
-							text: "NO NO NO",
+							text: "Mon Carapuce va t'écraser !",
 						},
 						{
-							who: "player",
-							type: "walk",
-							direction: "down",
-						},
-						{
-							who: "player",
-							type: "walk",
-							direction: "left",
+							type: "battle",
+							enemyId: "rival",
 						},
 					],
 				},
 			],
-			[utils.asGridCoords(5, 7)]: [
+			[utils.asGridCoords(44, 48)]: [
 				{
-					events: [{ type: "changeMap", map: "House" }],
+					events: [{ type: "changeMap", map: "MomHouse" }],
+				},
+			],
+			[utils.asGridCoords(54, 48)]: [
+				{
+					events: [{ type: "changeMap", map: "Dojo" }],
 				},
 			],
 		},
 	},
-	House: {
+	MomHouse: {
 		lowerSrc: "../assets/images/maps/map.PNG",
 		upperSrc: "../assets/images/maps/mapForeground.PNG",
+		walls: utils.loadWall(collisions),
 		gameObjects: {
 			player: new Person({
 				isPlayerControlled: true,
-				x: utils.withGrid(3),
-				y: utils.withGrid(8),
+				x: utils.withGrid(11),
+				y: utils.withGrid(11),
 			}),
-			npcA: new Person({
-				x: utils.withGrid(10),
+			npcMom: new Person({
+				x: utils.withGrid(8),
 				y: utils.withGrid(8),
-				src: "../assets/images/characters/npc_1.png",
+				src: "../assets/images/characters/mother.png",
+				behaviorLoop: [
+					{
+						type: "stand",
+						direction: "right",
+						time: 4000,
+					},
+				],
 				talking: [
 					{
-						events: [{ type: "textMessage", text: "You made it!", faceHero: "npcA" }],
+						events: [
+							{ type: "textMessage", text: "Je suis fière de toi.", facePlayer: "npcMom" },
+							{ type: "textMessage", text: "J'espère que tu les attraperas tous !", facePlayer: "npcMom" },
+						],
 					},
 				],
 			}),
+		},
+		cutsceneSpaces: {
+			[utils.asGridCoords(6, 13)]: [
+				{
+					events: [{ type: "changeMap", map: "PaletteTown" }],
+				},
+			],
+		},
+	},
+	Dojo: {
+		lowerSrc: "../assets/images/maps/map.PNG",
+		upperSrc: "../assets/images/maps/mapForeground.PNG",
+		walls: utils.loadWall(collisions),
+		gameObjects: {
+			player: new Person({
+				isPlayerControlled: true,
+				x: utils.withGrid(56),
+				y: utils.withGrid(16),
+			}),
+			npcTrain1: new Person({
+				x: utils.withGrid(8),
+				y: utils.withGrid(8),
+				src: "../assets/images/characters/mother.png",
+				talking: [
+					{
+						events: [{ type: "textMessage", text: "Lets fight", facePlayer: "npcA" }],
+					},
+				],
+				behaviorLoop: [
+					{
+						type: "stand",
+						direction: "right",
+						time: 4000,
+					},
+				],
+				talking: [
+					{
+						events: [
+							{ type: "textMessage", text: "Je suis fière de toi.", facePlayer: "npcA" },
+							{ type: "textMessage", text: "J'espère que tu les attraperas tous !", facePlayer: "npcA" },
+						],
+					},
+				],
+			}),
+		},
+		cutsceneSpaces: {
+			[utils.asGridCoords(56, 17)]: [
+				{
+					events: [{ type: "changeMap", map: "PaletteTown" }],
+				},
+			],
 		},
 	},
 };

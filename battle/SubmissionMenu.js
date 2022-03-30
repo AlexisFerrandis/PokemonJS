@@ -56,13 +56,13 @@ class SubmissionMenu {
 						this.keyboardMenu.setOptions(this.getPages().replacements);
 					},
 				},
-				{
-					label: "Run",
-					description: "Leave the battle",
-					handler: () => {
-						// run
-					},
-				},
+				// {
+				// 	label: "Run",
+				// 	description: "Leave the battle",
+				// 	handler: () => {
+				// 		// run
+				// 	},
+				// },
 			],
 			attacks: [
 				...this.caster.actions.map((key) => {

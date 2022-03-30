@@ -3,6 +3,7 @@
 	left: 5px;
 	top: 5px;
 	image-rendering: pixelated;
+	display: none;
 }
 
 .hud .combatant {

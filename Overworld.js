@@ -36,7 +36,7 @@ class Overworld {
 				});
 
 			// draw upper layer
-			// this.map.drawUpperImage(this.ctx, cameraPerson);
+			this.map.drawUpperImage(this.ctx, cameraPerson);
 
 			if (!this.map.isPaused) {
 				requestAnimationFrame(() => {
@@ -78,7 +78,7 @@ class Overworld {
 		this.hud = new Hud();
 		this.hud.init(document.querySelector(".game-container"));
 
-		this.startMap(window.OverworldMaps.DemoRoom);
+		this.startMap(window.OverworldMaps.MomHouse);
 
 		this.bindActionsInput();
 		this.bindPlayerPositionCheck();

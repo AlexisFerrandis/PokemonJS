@@ -45,7 +45,7 @@ const utils = {
 			let k = (i / 100) * 16;
 			mapCollisionArray.forEach((row, i) => {
 				row.forEach((symbol, j) => {
-					if (symbol === 916) boundaries.push([`${(x = j * 16)},${(y = k)}`, true]);
+					if (symbol !== 0) boundaries.push([`${(x = j * 16)},${(y = k)}`, true]);
 				});
 			});
 		}

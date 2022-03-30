@@ -1,10 +1,11 @@
 window.Actions = {
 	damage1: {
-		name: "whomp",
+		name: "Charge",
+		description: "Charge l'adversaire",
 		success: [
 			{
 				type: "textMessage",
-				text: "{CASTER} uses {ACTION}",
+				text: "{CASTER} utilises {ACTION} !",
 			},
 			{
 				type: "animation",
@@ -12,17 +13,17 @@ window.Actions = {
 			},
 			{
 				type: "stateChange",
-				damage: 10,
+				damage: 7,
 			},
 		],
 	},
 	healStatus: {
-		name: "tomato",
+		name: "Soin",
 		targetType: "friendly",
 		success: [
 			{
 				type: "textMessage",
-				text: "{CASTER} uses {ACTION}",
+				text: "{CASTER} utilises {ACTION}.",
 			},
 			{
 				type: "stateChange",
@@ -33,12 +34,12 @@ window.Actions = {
 			},
 		],
 	},
-	confusionStatus: {
-		name: "psycho",
+	paralyzedStatus: {
+		name: "Cage éclair",
 		success: [
 			{
 				type: "textMessage",
-				text: "{CASTER} uses {ACTION}",
+				text: "{CASTER} utilises {ACTION} !",
 			},
 			{
 				type: "animation",
@@ -48,36 +49,35 @@ window.Actions = {
 			{
 				type: "stateChange",
 				statusHandler: {
-					type: "cfs",
+					type: "par",
 					expiresIn: 3,
 				},
 			},
 			{
 				type: "textMessage",
-				text: "{TARGET} is now confused",
+				text: "{TARGET} est paralysé. Il ne peut pas attaquer.",
 			},
 		],
 	},
 
 	// items
 	item_recoverStatus: {
-		name: "status",
-		description: "Feeling fresh",
+		name: "Antidote",
+		description: "Dissipe tous les effets negatifs.",
 		targetType: "friendly",
 		success: [
-			{ type: "textMessage", text: "{CASTER} uses a {ACTION}!" },
+			{ type: "textMessage", text: "{CASTER} utilise un {ACTION}!" },
 			{ type: "stateChange", statusHandler: null },
-			{ type: "textMessage", text: "Feeling fresh!" },
+			{ type: "textMessage", text: "{CASTER} est propre comme un sous neuf." },
 		],
 	},
 	item_recoverHp: {
 		name: "Potion",
-		description: "Heals 20 HP",
+		description: "Le pokemon récupère 20 HP",
 		targetType: "friendly",
 		success: [
-			{ type: "textMessage", text: "{CASTER} sprinkles on some {ACTION}!" },
 			{ type: "stateChange", recover: 20 },
-			{ type: "textMessage", text: "{CASTER} recovers HP!" },
+			{ type: "textMessage", text: "{CASTER} récupère 20 HP !" },
 		],
 	},
 };

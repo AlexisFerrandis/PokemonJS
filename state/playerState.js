@@ -2,32 +2,32 @@ class PlayerState {
 	constructor() {
 		this.monsters = {
 			p1: {
-				monsterId: "eevee",
-				hp: 30,
-				maxHp: 50,
+				monsterId: "pikachu",
+				hp: 42,
+				maxHp: 42,
 				xp: 90,
 				maxXp: 100,
-				level: 1,
-				status: { type: "cfs" },
+				level: 5,
+				status: null,
 			},
 			p2: {
 				monsterId: "charmander",
-				hp: 50,
-				maxHp: 50,
+				hp: 51,
+				maxHp: 51,
 				xp: 75,
 				maxXp: 100,
-				level: 1,
+				level: 5,
 				status: null,
 			},
-			p3: {
-				monsterId: "ivysaur",
-				hp: 50,
-				maxHp: 50,
-				xp: 75,
-				maxXp: 100,
-				level: 1,
-				status: null,
-			},
+			// p3: {
+			// 	monsterId: "ivysaur",
+			// 	hp: 50,
+			// 	maxHp: 50,
+			// 	xp: 75,
+			// 	maxXp: 100,
+			// 	level: 1,
+			// 	status: null,
+			// },
 		};
 		this.lineup = ["p1", "p2"];
 		this.items = [

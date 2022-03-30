@@ -1,12 +1,14 @@
 .keyboard-menu {
 	position: absolute;
-	display: flex;
+	right: 0;
+	/* display: flex; */
 	justify-content: left;
 	flex-wrap: wrap;
 	height: 52px;
 	padding: 2px 0 5px 6px;
 	border: 2px solid #2a3214;
 	z-index: 4;
+	display: none;
 }
 .keyboard-menu::before {
 	content: "";
@@ -91,10 +93,11 @@
 	display: none;
 }
 
-/* Battle specific */
+/* battle specific */
 .battle .keyboard-menu {
 	right: 0;
 	bottom: 0;
+	display: flex;
 	width: 40%;
 }
 

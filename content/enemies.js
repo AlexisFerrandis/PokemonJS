@@ -1,19 +1,14 @@
 window.Enemies = {
 	rival: {
-		name: "Rival",
+		name: "Ton Rival",
 		src: "./assets/images/characters/trainers/rival.png",
 		// first line of dialog : "You're a rival, aren't you?"
 		monsters: {
 			a: {
-				monsterId: "bulbasaur",
-				maxHp: 50,
-				level: 1,
+				monsterId: "squirtle",
+				maxHp: 34,
+				level: 4,
 				// more...
-			},
-			b: {
-				monsterId: "ivysaur",
-				maxHp: 50,
-				level: 1,
 			},
 		},
 	},
