@@ -46,7 +46,10 @@ class OverworldMap {
 				event: events[i],
 				map: this,
 			});
-			await eventHandler.init();
+			const result = await eventHandler.init();
+			if (result === "LOST_BATTLE") {
+				break;
+			}
 		}
 
 		this.isCutscenePlaying = false;
@@ -62,7 +65,12 @@ class OverworldMap {
 			return `${object.x}, ${object.y}` === `${nextCoords.x}, ${nextCoords.y}`;
 		});
 		if (!this.isCutscenePlaying && match && match.talking.length) {
-			this.startCutscene(match.talking[0].events);
+			const relevantScenario = match.talking.find((scenario) => {
+				return (scenario.required || []).every((sf) => {
+					return playerState.storyFlags[sf];
+				});
+			});
+			relevantScenario && this.startCutscene(relevantScenario.events);
 		}
 	}
 
@@ -127,15 +135,8 @@ window.OverworldMaps = {
 				talking: [
 					{
 						events: [
-							{
-								type: "textMessage",
-								text: "Hahaha",
-								facePlayer: "npcA",
-							},
-							{
-								type: "battle",
-								enemyId: "rival",
-							},
+							{ type: "textMessage", text: "Bahaha!", faceHero: "npcA" },
+							{ type: "addStoryFlag", flag: "TALKED_TO_PROFESSOR" },
 						],
 					},
 				],
@@ -168,20 +169,19 @@ window.OverworldMaps = {
 				],
 				talking: [
 					{
+						required: ["TALKED_TO_PROFESSOR"],
+						events: [{ type: "textMessage", text: "Isn't the professor the coolest?", faceHero: "npcA" }],
+					},
+					{
 						events: [
-							{
-								type: "textMessage",
-								text: "Hello u...",
-								facePlayer: "npcA",
-							},
-							{
-								type: "textMessage",
-								text: "U'r the chosen one",
-							},
-							{
-								type: "battle",
-								enemyId: "beth",
-							},
+							{ type: "textMessage", text: "I'm going to crush you!", faceHero: "npcA" },
+							{ type: "battle", enemyId: "beth" },
+							{ type: "addStoryFlag", flag: "DEFEATED_BETH" },
+							{ type: "textMessage", text: "You crushed me like weak potato.", faceHero: "npcA" },
+							// {
+							// 	type: "battle",
+							// 	enemyId: "beth",
+							// },
 							// {
 							// 	who: "player",
 							// 	type: "walk",
